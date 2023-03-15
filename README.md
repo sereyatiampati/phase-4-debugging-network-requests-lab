@@ -63,6 +63,7 @@ developing your own process.
 - Add a new toy when the toy form is submitted
 
   - How I debugged:
+  --Checked the error on the rails server terminal and the error it guided me to the toys_controller.rb file where the action method had a typo ie Toys.create(toy_params) instead of Toy.create(toy_params)
 
 - Update the number of likes for a toy
 
@@ -71,3 +72,7 @@ developing your own process.
 - Donate a toy to Goodwill (and delete it from our database)
 
   - How I debugged:
+  -Checked the error on the rails server terminal and the error below guided me-
+  ActionController::RoutingError (No route matches [DELETE] "/toys/11"):
+  -Then i added a destroy route in the routes file 
+
