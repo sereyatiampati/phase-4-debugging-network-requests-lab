@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 
 function ToyForm({ onAddToy }) {
+  const [errors, setErrors] = useState([]);
   const [formData, setFormData] = useState({
     name: "",
     image: "",
@@ -28,13 +29,20 @@ function ToyForm({ onAddToy }) {
       },
       body: JSON.stringify(newToy),
     })
-      .then((r) => r.json())
-      .then((newToy) => {
+    .then((response) => {
+      if (response.ok) {
+        response.json().then((newToy) => console.log(newToy));
+        onAddToy(newToy);
+      } else {
+        response.json().then((errorData) => {
+          
+          setErrors(errorData.errors)});
+          console.log(errors)
+      }
         setFormData({
           name: "",
           image: "",
         });
-        onAddToy(newToy);
       });
   }
 
@@ -60,6 +68,13 @@ function ToyForm({ onAddToy }) {
           className="input-text"
         />
         <br />
+        {errors.length > 0 && (
+    <ul style={{ color: "red" }}>
+      {errors.map((error) => (
+        <li key={error}>{error}</li>
+      ))}
+    </ul>
+  )}
         <input
           type="submit"
           name="submit"
