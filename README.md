@@ -68,6 +68,7 @@ developing your own process.
 - Update the number of likes for a toy
 
   - How I debugged:
+  I checked the browser console and it indicated that the json was not being returned and i checked the toys_controller.rb file and i updated the and render json statements.
 
 - Donate a toy to Goodwill (and delete it from our database)
 
